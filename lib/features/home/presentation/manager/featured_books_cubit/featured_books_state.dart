@@ -1,6 +1,5 @@
 part of 'featured_books_cubit.dart';
 
-@immutable
 abstract class FeaturedBooksState extends Equatable {
   const FeaturedBooksState();
 
