@@ -9,13 +9,11 @@ class HomeRepoImplementation implements HomeRepo {
   final ApiService apiService;
 
   HomeRepoImplementation(this.apiService);
-
   @override
-  Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
     try {
       var data = await apiService.get(
-          endPoint:
-              'volumes?Filtering=free-ebooks&Sorting=newest &q=subject:programming');
+          endPoint: 'volumes?Filtering=free-ebooks&q=subject:programming');
 
       List<BookModel> books = [];
       for (var item in data['items']) {
@@ -31,10 +29,11 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
     try {
       var data = await apiService.get(
-          endPoint: 'volumes?Filtering=free-ebooks&q=subject:programming');
+          endPoint:
+              'volumes?Filtering=free-ebooks&Sorting=newest &q=subject:programming');
 
       List<BookModel> books = [];
       for (var item in data['items']) {

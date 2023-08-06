@@ -8,13 +8,9 @@ final getIt = GetIt.instance;
 
 void setupServiceLocator() {
   getIt.registerSingleton<ApiService>(
-    ApiService(
-      Dio(),
-    ),
+    ApiService(Dio()),
   );
-  getIt.registerSingleton<HomeRepoImplementation>(
-    HomeRepoImplementation(
-      getIt.get<ApiService>(),
-    ),
-  );
+  getIt.registerSingleton<HomeRepoImplementation>(HomeRepoImplementation(
+    getIt.get<ApiService>(),
+  ));
 }
