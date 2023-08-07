@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import 'access_info_model.dart';
 import 'sale_info_model.dart';
 import 'search_info.dart';
@@ -48,7 +49,7 @@ class BookModel extends Equatable {
         'id': id,
         'etag': etag,
         'selfLink': selfLink,
-        'volumeInfo': volumeInfo.toJson(),
+        'volumeInfo': volumeInfo?.toJson(),
         'saleInfo': saleInfo?.toJson(),
         'accessInfo': accessInfo?.toJson(),
         'searchInfo': searchInfo?.toJson(),

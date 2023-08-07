@@ -1,17 +1,18 @@
-class SearchInfo {
-  SearchInfo({
-    this.textSnippet,
-  });
+import 'package:equatable/equatable.dart';
 
-  SearchInfo.fromJson(dynamic json) {
-    textSnippet = json['textSnippet'];
-  }
+class SearchInfo extends Equatable {
+  final String? textSnippet;
 
-  String? textSnippet;
+  const SearchInfo({this.textSnippet});
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['textSnippet'] = textSnippet;
-    return map;
-  }
+  factory SearchInfo.fromJson(Map<String, dynamic> json) => SearchInfo(
+        textSnippet: json['textSnippet'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'textSnippet': textSnippet,
+      };
+
+  @override
+  List<Object?> get props => [textSnippet];
 }
