@@ -14,11 +14,14 @@ class BookDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.18),
-          child: CustomBookImage(
-            imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? "",
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.35,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.18),
+            child: CustomBookImage(
+              imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? "",
+            ),
           ),
         ),
         const SizedBox(
