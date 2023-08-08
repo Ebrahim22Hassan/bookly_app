@@ -64,8 +64,7 @@ class NewestBooksListViewItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       BookRatingText(
-                        rating:
-                            bookModel.volumeInfo.averageRating?.round() ?? 0,
+                        rating: bookModel.volumeInfo.averageRating ?? 0,
                         count: bookModel.volumeInfo.ratingsCount ?? 0,
                       ),
                     ],
