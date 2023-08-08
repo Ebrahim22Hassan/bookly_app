@@ -1,4 +1,8 @@
+import 'package:bookly/core/widgets/custom_error_widget.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
+import 'package:bookly/features/home/presentation/manager/similar_books_cubit/similar_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'custom_book_image.dart';
 
@@ -7,19 +11,29 @@ class SimilarBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.15,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: CustomBookImage(
-                imageUrl:
-                    "https://helios-i.mashable.com/imagery/articles/02KyEAwYxVujZac4DvG3qQg/hero-image.fill.size_1248x702.v1623367870.jpg"),
-          );
-        },
-      ),
-    );
+    return BlocBuilder<SimilarBooksCubit, SimilarBooksState>(
+        builder: (context, state) {
+      if (state is SimilarBooksSuccess) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.15,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: CustomBookImage(
+                  imageUrl:
+                      state.books[index].volumeInfo.imageLinks?.thumbnail ?? '',
+                ),
+              );
+            },
+          ),
+        );
+      } else if (state is SimilarBooksFailure) {
+        return CustomErrorWidget(errorMessage: state.errMessage);
+      } else {
+        return const CustomLoadingIndicator();
+      }
+    });
   }
 }
