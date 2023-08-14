@@ -1,11 +1,10 @@
-import 'package:equatable/equatable.dart';
-
+import '../../domain/entities/book_entity.dart';
 import 'access_info_model.dart';
 import 'sale_info_model.dart';
 import 'search_info.dart';
 import 'volume_info_model.dart';
 
-class BookModel extends Equatable {
+class BookModel extends BookEntity {
   final String? kind;
   final String? id;
   final String? etag;
@@ -15,7 +14,7 @@ class BookModel extends Equatable {
   final AccessInfo? accessInfo;
   final SearchInfo? searchInfo;
 
-  const BookModel({
+  BookModel({
     this.kind,
     this.id,
     this.etag,
@@ -24,7 +23,13 @@ class BookModel extends Equatable {
     this.saleInfo,
     this.accessInfo,
     this.searchInfo,
-  });
+  }) : super(
+          bookId: id!,
+          image: volumeInfo.imageLinks?.thumbnail ?? '',
+          rating: volumeInfo.averageRating,
+          title: volumeInfo.title!,
+          authorName: volumeInfo.authors!.first,
+        );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
         kind: json['kind'] as String?,
@@ -49,23 +54,23 @@ class BookModel extends Equatable {
         'id': id,
         'etag': etag,
         'selfLink': selfLink,
-        'volumeInfo': volumeInfo?.toJson(),
+        'volumeInfo': volumeInfo.toJson(),
         'saleInfo': saleInfo?.toJson(),
         'accessInfo': accessInfo?.toJson(),
         'searchInfo': searchInfo?.toJson(),
       };
 
-  @override
-  List<Object?> get props {
-    return [
-      kind,
-      id,
-      etag,
-      selfLink,
-      volumeInfo,
-      saleInfo,
-      accessInfo,
-      searchInfo,
-    ];
-  }
+// @override
+// List<Object?> get props {
+//   return [
+//     kind,
+//     id,
+//     etag,
+//     selfLink,
+//     volumeInfo,
+//     saleInfo,
+//     accessInfo,
+//     searchInfo,
+//   ];
+// }
 }
