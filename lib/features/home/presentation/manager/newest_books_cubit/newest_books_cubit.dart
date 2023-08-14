@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../data/models/BookModel.dart';
-import '../../../data/repos/home_repo.dart';
+import 'package:bookly/features/home/domain/repos/home_repo.dart';
 part 'newest_books_state.dart';
 
 class NewestBooksCubit extends Cubit<NewestBooksState> {
