@@ -6,13 +6,14 @@ import 'package:bookly/features/home/presentation/manager/featured_books_cubit/f
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'core/utils/service_locator.dart';
 import 'features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 
 void main() async {
   /// Service Locator
   setupServiceLocator();
+  await Hive.initFlutter();
 
   /// Register Hive adaptor and open box
   Hive.registerAdapter(BookEntityAdapter());
