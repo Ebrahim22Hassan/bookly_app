@@ -13,11 +13,12 @@ import 'features/home/presentation/manager/newest_books_cubit/newest_books_cubit
 void main() async {
   /// Service Locator
   setupServiceLocator();
-  await Hive.initFlutter();
 
   /// Register Hive adaptor and open box
+  await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kNewestBox);
   runApp(const BooklyApp());
 }
 
