@@ -45,8 +45,12 @@ dependencies:
   get_it: ^7.6.0
   cached_network_image: ^3.2.3
   url_launcher: ^6.1.11
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
+  hive_generator:
+  build_runner:
   flutter_test:
     sdk: flutter
 
