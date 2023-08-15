@@ -17,11 +17,14 @@ class BookEntity {
   final String? authorName;
   @HiveField(4)
   final num? rating;
+  @HiveField(5)
+  final num? count;
 
   BookEntity(
       {required this.image,
       required this.title,
       required this.authorName,
       required this.rating,
+      required this.count,
       required this.bookId});
 }

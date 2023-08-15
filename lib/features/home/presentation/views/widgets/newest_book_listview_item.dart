@@ -1,5 +1,5 @@
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/features/home/data/models/BookModel.dart';
+import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,24 +8,23 @@ import '../../../../../core/utils/styles.dart';
 import 'book_rating_text.dart';
 
 class NewestBooksListViewItem extends StatelessWidget {
-  const NewestBooksListViewItem({super.key, required this.bookModel});
+  const NewestBooksListViewItem({super.key, required this.bookEntity});
 
-  final BookModel bookModel;
+  final BookEntity bookEntity;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(
           AppRouter.kBookDetailsView,
-          extra: bookModel,
+          extra: bookEntity,
         );
       },
       child: SizedBox(
         height: 125,
         child: Row(
           children: [
-            CustomBookImage(
-                imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? ''),
+            CustomBookImage(imageUrl: bookEntity.image ?? ''),
             const SizedBox(
               width: 30,
             ),
@@ -36,7 +35,7 @@ class NewestBooksListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .5,
                     child: Text(
-                      bookModel.volumeInfo.title!,
+                      bookEntity.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20.copyWith(
@@ -48,7 +47,7 @@ class NewestBooksListViewItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    bookModel.volumeInfo.authors![0],
+                    bookEntity.authorName![0],
                     style: Styles.textStyle14,
                   ),
                   const SizedBox(
@@ -64,8 +63,8 @@ class NewestBooksListViewItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       BookRatingText(
-                        rating: bookModel.volumeInfo.averageRating ?? 0,
-                        count: bookModel.volumeInfo.ratingsCount ?? 0,
+                        rating: bookEntity.rating ?? 0,
+                        count: bookEntity.count ?? 0,
                       ),
                     ],
                   ),
