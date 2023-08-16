@@ -6,16 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/entities/book_entity.dart';
 import 'featured_books_list_view.dart';
 
-class FeaturedBooksListViewBlocBuilder extends StatefulWidget {
-  const FeaturedBooksListViewBlocBuilder({Key? key}) : super(key: key);
+class FeaturedBooksListViewBlocConsumer extends StatefulWidget {
+  const FeaturedBooksListViewBlocConsumer({Key? key}) : super(key: key);
 
   @override
-  State<FeaturedBooksListViewBlocBuilder> createState() =>
-      _FeaturedBooksListViewBlocBuilderState();
+  State<FeaturedBooksListViewBlocConsumer> createState() =>
+      _FeaturedBooksListViewBlocConsumerState();
 }
 
-class _FeaturedBooksListViewBlocBuilderState
-    extends State<FeaturedBooksListViewBlocBuilder> {
+class _FeaturedBooksListViewBlocConsumerState
+    extends State<FeaturedBooksListViewBlocConsumer> {
   List<BookEntity> books = [];
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,14 @@ class _FeaturedBooksListViewBlocBuilderState
       if (state is FeaturedBooksSuccess) {
         books.addAll(state.books);
       }
+      if (state is FeaturedBooksPaginationFailure) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(state.errMessage)));
+      }
     }, builder: (context, state) {
       if (state is FeaturedBooksSuccess ||
-          state is FeaturedBooksPaginationLoading) {
+          state is FeaturedBooksPaginationLoading ||
+          state is FeaturedBooksPaginationFailure) {
         return FeaturedBooksListView(
           books: books,
         );
