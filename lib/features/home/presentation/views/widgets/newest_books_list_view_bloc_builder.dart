@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../manager/newest_books_cubit/newest_books_cubit.dart';
 import 'newest_books_list_view.dart';
 
@@ -20,7 +19,7 @@ class NewestBooksListViewBlocBuilder extends StatelessWidget {
         } else if (state is NewestBooksFailure) {
           return CustomErrorWidget(errorMessage: state.errMessage);
         } else {
-          return const CustomLoadingIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

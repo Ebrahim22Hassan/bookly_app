@@ -1,4 +1,3 @@
-import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/core/widgets/custom_error_widget.dart';
 import 'package:bookly/features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,7 @@ class _FeaturedBooksListViewBlocConsumerState
       } else if (state is FeaturedBooksFailure) {
         return CustomErrorWidget(errorMessage: state.errMessage);
       } else {
-        return const CustomLoadingIndicator();
+        return const Center(child: CircularProgressIndicator());
       }
     });
   }

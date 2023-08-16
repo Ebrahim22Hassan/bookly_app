@@ -2,7 +2,6 @@ import 'package:bookly/features/home/presentation/views/widgets/similar_books_li
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
 import '../../manager/similar_books_cubit/similar_books_cubit.dart';
 
 class SimilarBooksListViewBlocBuilder extends StatelessWidget {
@@ -19,7 +18,7 @@ class SimilarBooksListViewBlocBuilder extends StatelessWidget {
       } else if (state is SimilarBooksFailure) {
         return CustomErrorWidget(errorMessage: state.errMessage);
       } else {
-        return const CustomLoadingIndicator();
+        return const Center(child: CircularProgressIndicator());
       }
     });
   }
