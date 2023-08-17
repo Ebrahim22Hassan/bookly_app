@@ -41,7 +41,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         SizedBox(
           height: 200,
           width: 200,
-          child: Image.asset(AssetsData.logoL),
+          child: Image.asset(AssetsData.logo),
         ),
         const SizedBox(height: 4),
         SlidingText(slidingAnimation: slidingAnimation),

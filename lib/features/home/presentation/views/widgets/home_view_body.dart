@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
 import 'featured_books_list_view_bloc_consumer.dart';
-import 'newest_books_list_view_bloc_builder.dart';
+import 'newest_books_list_view_bloc_consumer.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class HomeViewBody extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(
                 left: kPadding30, right: kPadding30, bottom: 20),
-            child: NewestBooksListViewBlocBuilder(),
+            child: NewestBooksListViewBlocConsumer(),
           ),
         ),
       ],
